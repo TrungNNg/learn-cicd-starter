@@ -42,7 +42,7 @@ jobs:
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/skilful-sphere-439323-u6/notely-ar-repo/trungnng/notely:latest .
 
       - name: Run Goose migration
-        run: goose sqlite "${{ secrets.DATABASE_URL }}" up
+        run: ./scripts/migrateup.sh
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy notely --image us-central1-docker.pkg.dev/skilful-sphere-439323-u6/notely-ar-repo/trungnng/notely:latest --region us-central1 --allow-unauthenticated --project skilful-sphere-439323-u6 --max-instances=4
